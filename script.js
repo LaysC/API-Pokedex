@@ -25,3 +25,14 @@ async function loadPokemons() {
 }
 
 loadPokemons();
+
+document.getElementById('search').addEventListener('change', async (e) => {
+  const name = e.target.value.toLowerCase();
+  container.innerHTML = '';
+  try {
+    const pokemon = await getPokemon(name);
+    createPokemonCard(pokemon);
+  } catch {
+    container.innerHTML = '<p>Pokémon não encontrado!</p>';
+  }
+});
