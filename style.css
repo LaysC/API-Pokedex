@@ -1,25 +1,214 @@
+:root {
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --color-primary: #D03B3B;
+  --color-primary-light: #E46868;
+  --color-accent: #3C4FA5;
+  --color-accent-light: #657BE0;
+  --color-highlight: #D8BC35;
+  --color-highlight-soft: #F5E98D;
+
+  --color-bg: #D03B3B; 
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F5F5F5;
+
+  --color-text: #1B1C21;
+  --color-muted: #555666;
+
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  background-color: #f2f2f2;
-}
-
-#pokemon-container {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+  align-items: center;
+  padding: 1rem;
 }
 
-.pokemon-card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 150px;
+.container {
+  background: var(--color-surface);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-.pokemon-card img {
-  width: 100px;
+#mensagem-boasvindas h1 {
+  font-size: 1.8rem;
+  color: var(--color-highlight);
+  margin-bottom: 0.5rem;
+}
+
+#mensagem-boasvindas p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.sessao-campo-pesquisa {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+#input-pesquisar {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  transition: border var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+#input-pesquisar::placeholder {
+  color: var(--color-muted);
+}
+
+#input-pesquisar:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(208, 59, 59, 0.3);
+  outline: none;
+}
+
+#btn-pesquisar {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+#btn-pesquisar:hover:not(:disabled),
+#btn-pesquisar:focus-visible:not(:disabled) {
+  background: var(--color-primary-light);
+  transform: scale(1.03);
+  outline: none;
+}
+
+#btn-pesquisar:disabled {
+  background: #883a3a;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#mensagem-loading,
+#mensagem-erro {
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+#mensagem-loading {
+  background: #f0f0f0;
+  color: var(--color-primary-light);
+}
+
+#mensagem-erro {
+  background: #ffe5e5;
+  color: #b40000;
+}
+
+#pokemon-info {
+  background: var(--color-highlight-soft);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05);
+  transition: opacity var(--transition-medium);
+}
+
+#pokemon-info.hidden {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+#pokemon-imagem {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--color-highlight);
+  margin-bottom: 1rem;
+  padding: 0.4rem;
+  transition: transform var(--transition-medium);
+}
+
+#pokemon-imagem:hover {
+  transform: scale(1.05);
+}
+
+#pokemon-nome {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+  text-transform: capitalize;
+}
+
+#pokemon-descricao {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.btms-navegacao {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btms-navegacao button {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.btms-navegacao button:hover:not(:disabled),
+.btms-navegacao button:focus-visible:not(:disabled) {
+  background: var(--color-accent-light);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.btms-navegacao button:disabled {
+  background: #43539288;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hidden {
+  display: none !important;
 }
