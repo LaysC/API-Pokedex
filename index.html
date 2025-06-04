@@ -2,14 +2,52 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pokédex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API Pokédex</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Pokédex</h1>
-  <input type="text" id="search" placeholder="Buscar Pokémon..." />
-  <div id="pokemon-container"></div>
+  <div class="container">
+    <!-- Mensagem inicial para recepcionar o usuário -->
+    <div id="mensagem-boasvindas">
+      <h1>Seja bem-vindo à API Pokédex</h1>
+      <p>Digite o nome ou o ID do Pokémon que você quer buscar:</p>
+    </div>
+
+    <!-- Campo de pesquisa onde o usuário pode digitar o nome ou ID do Pokémon -->
+    <div class="sessao-campo-pesquisa">
+      <input type="text" id="input-pesquisar" placeholder="Nome ou ID do Pokémon" />
+      <button id="btn-pesquisar">Buscar</button>
+    </div>
+
+    <!-- Área principal do app onde as informações do Pokémon serão exibidas -->
+    <div id="pokedex-app">
+      
+      <!-- Mensagem de carregamento, aparece enquanto a busca está em andamento -->
+      <div id="mensagem-loading" class="hidden">
+        <p>Carregando...</p>
+      </div>
+
+      <!-- Container para mostrar a imagem, nome e descrição do Pokémon encontrado -->
+      <div id="pokemon-info" class="hidden">
+        <img id="pokemon-imagem" src="" alt="Imagem do Pokémon" />
+        <h2 id="pokemon-nome"></h2>
+        <p id="pokemon-descricao"></p>
+      </div>
+
+      <!-- Botões de navegação para ir ao Pokémon anterior ou próximo -->
+      <div class="btms-navegacao hidden">
+        <button id="btn-anterior">Pokémon Anterior</button>
+        <button id="btn-proximo">Próximo Pokémon</button>
+      </div>
+
+      <!-- Mensagem exibida caso o Pokémon não seja encontrado -->
+      <div id="mensagem-erro" class="hidden">
+        <p>Pokémon não encontrado!</p>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
